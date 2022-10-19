@@ -1,6 +1,6 @@
 <x-layout>
     @foreach($posts as $post)
-        <article class="mb-4">
+        <article class="hover:bg-gray-300 mb-4 px-2 py-4">
             <h1 class="font-bold text-lg">{{$post->title}}</h1>
             <a class="border-2 inline-block px-4 py-1 rounded-full text-sm" href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
             <p class="my-2">{{$post->excerpt}}</p>
