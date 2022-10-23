@@ -24,7 +24,7 @@
         </nav>
 
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6 flex flex-col">
-            <h1 class="text-xl font-bold self-center">{{$post->title}}</h1>
+            <h1 class="text-xl font-bold self-center">{{$post->title}} <span class="text-sm font-medium">By {{$post->user->name}}</span></h1>
             <a class="border-2 self-start px-4 py-1 rounded-full text-sm" href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
             <p>{{$post->body}}</p>
             <a class= "bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 self-start" href="/">Go Back </a>
