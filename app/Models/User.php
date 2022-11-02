@@ -24,7 +24,7 @@ class User extends Authenticatable
 //        'username'
 //    ];
 
-    protected $guarded = [];
+//    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.

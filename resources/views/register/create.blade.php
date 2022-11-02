@@ -95,6 +95,7 @@
                 </ul>
                 @endif
             </form>
+            <p><a href="/login">Already got an account? <span class="font-bold underline text-blue-500">Sign In</span></a></p>
         </main>
     </section>
 

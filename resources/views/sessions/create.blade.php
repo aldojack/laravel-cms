@@ -50,7 +50,9 @@
                         Login
                     </button>
                 </div>
-                @if($errors->any())
+
+                <p><a href="/register">Not registered? <span class="font-bold underline text-blue-500">Join today</span></a></p>
+            @if($errors->any())
                     <ul>
                         @foreach($errors->all() as $error)
                             <li class="text-red-500 text-xs">{{$error}}</li>
