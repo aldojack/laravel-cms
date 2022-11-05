@@ -5,21 +5,29 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
+use MailchimpMarketing\ApiClient;
 
 
-Route::get('ping', function(){
-    $mailchimp = new \MailchimpMarketing\ApiClient();
+Route::post('newsletter', function(){
+    request()->validate(['email' => 'required|email']);
+    $mailchimp = new ApiClient();
 
     $mailchimp->setConfig([
         'apiKey' => config('services.mailchimp.key'),
         'server' => 'us12'
     ]);
-
-    $response = $mailchimp->lists->addListMember('a06547c296', [
-        'email_address' => "b00419166@studentmail.uws.ac.uk",
-        'status' => 'subscribed'
-    ]);
-    ddd($response);
+    try{
+        $response = $mailchimp->lists->addListMember('a06547c296', [
+            'email_address' => request('email'),
+            'status' => 'subscribed'
+        ]);
+    } catch(\Exception $e){
+        throw ValidationException::withMessages([
+            'email' => 'Invalid email, could not be added to our newsletter list.'
+        ]);
+    };
+    return redirect('/')->with('success','You are signed up to our newsletter');
 });
 
 Route::get('/', [PostController::class,  'index'])->name('home');
