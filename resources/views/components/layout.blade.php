@@ -23,11 +23,26 @@
 
             <div class="mt-8 md:mt-0 flex items-baseline space-x-2">
                 @auth
-                    <a href="/?author={{auth()->user()->username}}" class="text-xs font-bold uppercase">{{auth()->user()->name}}</a>
-                    <form method="post" action="/logout" class="">
-                        @csrf
-                        <button type="submit" class="text-sm font-semibold">Log Out</button>
-                    </form>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="text-xs font-bold uppercase">Welcome, {{auth()->user()->name}}</button>
+                        </x-slot>
+                        <x-dropdown-item href="/" :active="request()->is('/')">
+                            Home
+                        </x-dropdown-item>
+                        <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
+                            New Post
+                        </x-dropdown-item>
+                        <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">
+                            Logout
+                        </x-dropdown-item>
+
+                        <form method="post" action="/logout" class="hidden" id="logout-form">
+                            @csrf
+                            <button type="submit" class="text-sm font-semibold">Log Out</button>
+                        </form>
+                    </x-dropdown>
+
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="text-xs font-bold uppercase">Login</a>
