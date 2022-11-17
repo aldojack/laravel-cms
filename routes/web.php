@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -25,6 +26,8 @@ Route::post('register',[RegisterController::class, 'store'])->middleware('guest'
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('sessions', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+Route::get('{user:username}/posts', [UserPostController::class, 'index'])->middleware('auth');
 
 Route::middleware('can:admin')->group(function(){
     Route::resource('admin/posts', AdminPostController::class)->except('show');
