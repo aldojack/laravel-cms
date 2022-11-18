@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class UserPostController extends Controller
 {
     public function index()
     {
         $id = request()->user()->id;
-        return view('user.posts.index', [
-            // 'posts' => Post::paginate(5)
-            'posts' => Post::where('user_id', $id)->get()
-        ]);
+        $username = request()->user()->username;
+        $segement = request()->segment(1);
+        if($username === $segement)
+        {
+            return view('user.posts.index', [
+                'posts' => Post::where('user_id', $id)->get()
+            ]);
+        }
+        else {
+            return abort(401);
+        }
     }
 
     public function create()
