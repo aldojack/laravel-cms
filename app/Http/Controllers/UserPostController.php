@@ -11,19 +11,11 @@ class UserPostController extends Controller
 {
     public function index()
     {
-        $id = request()->user()->id;
-        $username = request()->user()->username;
-        $segement = request()->segment(1);
-        if($username === $segement)
-        {
-            return view('user.posts.index', [
-                'posts' => Post::where('user_id', $id)->get()
-            ]);
-        }
-        else {
-            return abort(401);
-        }
+        return view('user.posts.index', [
+            'posts' => Post::where('user_id', auth()->id())->get()
+        ]);
     }
+    
 
     public function create()
     {
