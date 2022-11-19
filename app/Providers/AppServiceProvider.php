@@ -32,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function(User $user){
             return $user->username === 'aldojack';
         });
+
+        Gate::define('user', function(User $user){
+            return $user->username === User::where('username', $user->username)->first()->username;
+        });
+
         Blade::if('admin', function(){
             return request()->user()->can('admin');
         });

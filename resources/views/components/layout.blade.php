@@ -32,6 +32,10 @@
                             <x-dropdown-item href="/admin/posts/" :active="request()->is('admin/posts/')">Dashboard</x-dropdown-item>
                             <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
                         @endadmin
+                        @can('user')
+                            <x-dropdown-item href="/dashboard/posts/" :active="request()->is('dashboard/posts/')">Dashboard</x-dropdown-item>
+                            <x-dropdown-item href="/dashboard/posts/create" :active="request()->is('dashboard/posts/create')">New Post</x-dropdown-item>
+                        @endcan
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Logout</x-dropdown-item>
 
                         <form method="post" action="/logout" class="hidden" id="logout-form">
