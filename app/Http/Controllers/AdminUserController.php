@@ -51,7 +51,15 @@ class AdminUserController extends Controller
 
     public function destroy(User $user)
     {
-        // if(request()->auth)
+
+        $user->posts->each(function ($post) {
+            if(Storage::disk('public')->exists($post->thumbnail))
+            {
+                Storage::disk('public')->delete($post->thumbnail);
+                $post->delete();
+            }
+        });
+        
         $user->delete();
 
         return back()->with('success', 'User Deleted!');
