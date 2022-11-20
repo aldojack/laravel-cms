@@ -11,8 +11,8 @@
     }
 </style>
 
-<body style="font-family: Open Sans, sans-serif">
-    <section class="px-6 py-8 bg-blue-200">
+<body style="font-family: Open Sans, sans-serif" class="bg-blue-200">
+    <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
@@ -20,7 +20,7 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0 flex items-baseline space-x-2 self-start">
+            <div class="mt-8 md:mt-0 flex items-baseline space-x-2 self-start text-white">
                 @auth
                     <x-dropdown>
                         <x-slot name="trigger">
@@ -57,7 +57,6 @@
     {{$slot}}
 
         <footer id="newsletter"class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
-            <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
             <h5 class="text-3xl">Stay in touch with the latest posts</h5>
             <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
 
