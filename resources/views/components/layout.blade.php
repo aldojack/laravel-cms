@@ -1,11 +1,10 @@
 <!doctype html>
-
-<title>Laravel From Scratch Blog</title>
+<title>SpeakUp - @yield('title')</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" defer></script>
-
+<!-- @yield('styles') -->
 <style>
     html {
         scroll-behavior: smooth;
@@ -17,11 +16,11 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
-                    <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
+                    <img src="/images/SpeakUp-logos_white.png" alt="Laracasts Logo" width="165" height="16">
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0 flex items-baseline space-x-2">
+            <div class="mt-8 md:mt-0 flex items-baseline space-x-2 self-start">
                 @auth
                     <x-dropdown>
                         <x-slot name="trigger">

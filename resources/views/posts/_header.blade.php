@@ -1,9 +1,9 @@
 <header class="max-w-xl mx-auto mt-20 text-center">
-    <h1 class="text-4xl">
-        Latest <span class="text-blue-500">Laravel</span> News
-    </h1>
-
-    <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-4">
+    <div id="hero" style="background-image:url(/images/hero-banner.jpg);height:40vh;width: 100vw;position: relative;left: calc(-50vw + 50%);" class="flex flex-col items-center justify-center">
+        <h1 class="text-4xl">
+            Home of <span class="text-blue-500" style="text-shadow: 2px 2px 2px #1259CE">SpeakUp</span>
+        </h1>
+        <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-4">
         <!--  Category -->
         <div class="relative lg:inline-flex items-center bg-gray-100 rounded-xl">
             <x-category-dropdown />
@@ -42,5 +42,6 @@
                         value={{request('search')}}>
             </form>
         </div>
+    </div>
     </div>
 </header>
