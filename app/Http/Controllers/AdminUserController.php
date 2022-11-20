@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
  
@@ -51,18 +52,25 @@ class AdminUserController extends Controller
 
     public function destroy(User $user)
     {
-
-        $user->posts->each(function ($post) {
-            if(Storage::disk('public')->exists($post->thumbnail))
+            if(request()->user()->id !== $user->id)
             {
-                Storage::disk('public')->delete($post->thumbnail);
-                $post->delete();
-            }
-        });
+                $user->posts->each(function ($post) {
+                    if(Storage::disk('public')->exists($post->thumbnail))
+                    {
+                        Storage::disk('public')->delete($post->thumbnail);
+                        $post->delete();
+                    }
+                });
+                
+                $user->delete();
         
-        $user->delete();
+                return back()->with('success', 'User Deleted!');
+            }
 
-        return back()->with('success', 'User Deleted!');
+            else 
+            {
+            return back()->with('error', 'Unable to delete your own account');
+            }
     }
 
 
