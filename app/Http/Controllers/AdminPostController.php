@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPostController extends Controller
 {
@@ -49,10 +50,18 @@ class AdminPostController extends Controller
 
     public function destroy(Post $post)
     {
+        $path = $post->thumbnail;
+
+        if(Storage::disk('public')->exists($path))
+        {
+            Storage::disk('public')->delete($path);
+        }
+
         $post->delete();
 
         return back()->with('success', 'Post Deleted!');
     }
+
 
     protected function validatePost(?Post $post = null): array
     {
