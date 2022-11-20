@@ -9,27 +9,29 @@
                                 <tr>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Title
+                                        Name
                                     </th>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Author
+                                        Username
                                     </th>
-                                    <th colspan="2"
-                                        class="px-5 py-3 border-b-2 text-center border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Email
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                         Action
                                     </th>
                                 </tr>
                                 </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($posts as $post)
+                                <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach ($users as $user)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm font-medium text-gray-900">
-                                                <a href="/posts/{{ $post->slug }}">
-                                                    {{ $post->title }}
-                                                </a>
+                                                {{ $user->name }}
                                             </div>
                                         </div>
                                     </td>
@@ -37,19 +39,21 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm font-medium text-gray-900">
-                                                <a href="/posts/{{ $post->author }}">
-                                                    {{ $post->author->name }}
-                                                </a>
+                                                {{ $user->username }}
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                {{ $user->email }}
                                             </div>
                                         </div>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/admin/posts/{{ $post->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/admin/posts/{{ $post->id }}">
+                                        <form method="POST" action="/admin/users/{{ $user->id }}">
                                             @csrf
                                             @method('DELETE')
 

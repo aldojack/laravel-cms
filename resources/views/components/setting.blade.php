@@ -11,6 +11,9 @@
                     <a href="/admin/posts" class="{{request()->is('admin/posts') ? 'text-blue-500 font-bold underline' : ''}}">All Posts</a>
                 </li>
                 <li>
+                    <a href="/admin/users" class="{{request()->is('admin/users') ? 'text-blue-500 font-bold underline' : ''}}">All Users</a>
+                </li>
+                <li>
                     <a href="/admin/posts/create" class="{{request()->is('admin/posts/create') ? 'text-blue-500 font-bold underline' : ''}}">New Post</a>
                 </li>
             </ul>

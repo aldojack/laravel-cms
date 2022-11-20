@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\UserPostController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -29,7 +30,10 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 
 Route::middleware('can:admin')->group(function(){
     Route::resource('admin/posts', AdminPostController::class)->except('show');
+    Route::resource('admin/users', AdminUserController::class);
+    Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy']);
 });
+
 
 Route::get('dashboard/posts', [UserPostController::class, 'index'])->middleware('auth');
 Route::post('dashboard/posts', [UserPostController::class, 'store'])->middleware('auth');

@@ -13,7 +13,7 @@
 </style>
 
 <body style="font-family: Open Sans, sans-serif">
-    <section class="px-6 py-8">
+    <section class="px-6 py-8 bg-blue-200">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">

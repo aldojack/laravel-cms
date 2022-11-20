@@ -42,7 +42,7 @@ class UserPostController extends Controller
         $attributes = $this->validatePost($post);
 
         if ($attributes['thumbnail'] ?? false) {
-            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('/images/thumbnails');
         }
 
         $post->update($attributes);
