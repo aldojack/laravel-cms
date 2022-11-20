@@ -4,7 +4,7 @@
         {{$heading}}
     </h1>
     <div class="flex">
-        <aside class="w-48 shrink-0">
+        <aside class="min-w-max shrink-0 mr-4">
             <h4 class="font-semibold mb-4">Links</h4>
             <ul>
                 <li>
