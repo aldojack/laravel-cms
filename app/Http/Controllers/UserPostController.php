@@ -64,7 +64,6 @@ class UserPostController extends Controller
         return request()->validate([
             'title' => 'required',
             'thumbnail' => $post->exists ? ['image'] : ['required', 'image'],
-            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
             'excerpt' => 'required',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')]
