@@ -4,7 +4,6 @@
         <form method="POST" action="/dashboard/posts" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title"/>
-            <!-- <x-form.input name="slug" disabled/> -->
             <x-form.input name="thumbnail" type="file"/>
             <x-form.textarea name="excerpt" />
             <x-form.textarea name="body" />
