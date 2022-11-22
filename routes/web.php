@@ -5,6 +5,7 @@ use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\NewsletterController;
@@ -34,6 +35,8 @@ Route::middleware('can:admin')->group(function(){
     Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy']);
 });
 
+Route::get('login/github',[LoginController::class,'redirectToProvider']);
+Route::get('login/github/callback',[LoginController::class,'handleProviderCallback']);
 
 Route::get('dashboard/posts', [UserPostController::class, 'index'])->middleware('auth');
 Route::post('dashboard/posts', [UserPostController::class, 'store'])->middleware('auth');
@@ -41,6 +44,8 @@ Route::get('dashboard/posts/create', [UserPostController::class, 'create'])->mid
 Route::get('dashboard/posts/{post}/edit', [UserPostController::class, 'edit'])->middleware('auth');
 Route::patch('dashboard/posts/{post}', [UserPostController::class, 'update'])->middleware('auth');
 Route::delete('dashboard/posts/{post}', [UserPostController::class, 'destroy'])->middleware('auth');
+
+
 
 
 

@@ -22,6 +22,8 @@
                         </ul>
                     @endif
                 </form>
+                <a href="/login/github" class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600 focus:bg-blue-600">Github</a>
+
             </x-panel>
         </main>
     </section>
