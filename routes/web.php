@@ -35,8 +35,8 @@ Route::middleware('can:admin')->group(function(){
     Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy']);
 });
 
-Route::get('login/github',[LoginController::class,'redirectToProvider']);
-Route::get('login/github/callback',[LoginController::class,'handleProviderCallback']);
+Route::get('login/{provider}',[LoginController::class,'redirectToProvider']);
+Route::get('login/{provider}/callback',[LoginController::class,'handleProviderCallback']);
 
 Route::get('dashboard/posts', [UserPostController::class, 'index'])->middleware('auth');
 Route::post('dashboard/posts', [UserPostController::class, 'store'])->middleware('auth');
