@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('provider_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->tinyInteger('isAdmin')->default(0);
         });
     }
 

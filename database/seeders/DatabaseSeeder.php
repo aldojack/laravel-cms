@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             'name' => "Alan Jack",
             'password' => "password123",
             'email' => "alan@email.com",
-            'username' => 'aldojack1'
+            'username' => 'aldojack1', 
+            'isAdmin' => 1
         ]);
         Post::factory(2)->create([
             'user_id' => $user->id
