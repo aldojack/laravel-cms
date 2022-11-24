@@ -27,10 +27,8 @@ class LoginController extends Controller
     {
         //Create a new user in our database
         $socialUser = Socialite::driver($provider)->user();
-        if($socialUser->getNickname === null)
-        {
-            $newUsername = $socialUser->getName().substr($socialUser->getId(), 0, 5);
-        }
+
+        $newUsername = $socialUser->getNickname ? $socialUser->getNickname() : $socialUser->getName().substr($socialUser->getId(), 0, 5);
 
         $user = User::firstOrCreate(
             [
