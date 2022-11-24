@@ -16,7 +16,7 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
-                    <img src="/images/SpeakUp-logos_white.png" alt="Laracasts Logo" width="165" height="16">
+                    <img src="/images/SpeakUp-logos_white.png" alt="Speakup Logo" width="165" height="16">
                 </a>
             </div>
 
@@ -24,7 +24,8 @@
                 @auth
                     <x-dropdown>
                         <x-slot name="trigger">
-                            <button class="text-xs font-bold uppercase">Welcome, {{auth()->user()->name}}</button>
+                            <button class="text-xs font-bold uppercase mr-2">{{auth()->user()->name}}</button>
+                            <img src="https://i.pravatar.cc/40?u={{auth()->user()->id}}" alt="user avatar" width="40" height="40" class="rounded-full cursor-pointer">
                         </x-slot>
                         <x-dropdown-item href="/" :active="request()->is('/')">Home</x-dropdown-item>
                         @admin
