@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserPostController extends Controller
 {
@@ -52,6 +54,13 @@ class UserPostController extends Controller
 
     public function destroy(Post $post)
     {
+        $path = $post->thumbnail;
+
+        if(Storage::disk('public')->exists($path))
+        {
+            Storage::disk('public')->delete($path);
+        }
+
         $post->delete();
 
         return back()->with('success', 'Post Deleted!');
