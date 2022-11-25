@@ -4,6 +4,7 @@
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    @if($posts->count())
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -28,13 +29,17 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button class="text-xs text-gray-400">Delete</button>
+                                            <button class="text-xs text-white bg-red-500 rounded p-2">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        @else
+                        <p class="mb-4">You have no posts to show, go speak up and come back!</p>
+                        <a href="/dashboard/posts/create" class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600 focus:bg-blue-600">Create Post</a>
+                        @endif
                     </div>
                 </div>
             </div>
