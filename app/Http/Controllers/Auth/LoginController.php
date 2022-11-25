@@ -39,6 +39,7 @@ class LoginController extends Controller
                 'username' => $newUsername,
                 'email' => $socialUser->getEmail(),
                 'provider_id' => $socialUser->getId(),
+                'verified' => 1,
             ]
         );
 

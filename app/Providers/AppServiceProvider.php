@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('user', function(User $user){
-            return $user->isAdmin === 0;
+            return $user->isAdmin === 0 && $user->verified;
         });
 
         Blade::if('admin', function(){

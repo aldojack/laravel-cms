@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'password' => "password123",
             'email' => "alan@email.com",
             'username' => 'aldojack1', 
+            'verified' => 1,
             'isAdmin' => 1
         ]);
         Post::factory(2)->create([
