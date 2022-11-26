@@ -44,6 +44,14 @@ class UserPostController extends Controller
         $attributes = $this->validatePost($post);
 
         if ($attributes['thumbnail'] ?? false) {
+
+            $path = $post->thumbnail;
+
+            if(Storage::disk('public')->exists($path))
+            {
+                Storage::disk('public')->delete($path);
+            }
+
             $attributes['thumbnail'] = request()->file('thumbnail')->store('/images/thumbnails');
         }
 

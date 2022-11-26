@@ -40,7 +40,15 @@ class AdminPostController extends Controller
         $attributes = $this->validatePost($post);
 
         if ($attributes['thumbnail'] ?? false) {
-            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+
+            $path = $post->thumbnail;
+
+            if(Storage::disk('public')->exists($path))
+            {
+                Storage::disk('public')->delete($path);
+            }
+
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('/images/thumbnails');
         }
 
         $post->update($attributes);
