@@ -68,7 +68,7 @@
         {
             return Validator::make($data, [
                 'name'=> ['required','max:50'],
-                'username'=>['required','max:50','min:5',Rule::unique('users','username')],
+                'username'=>['required','max:50','min:5',Rule::unique('users','username'), 'alpha_dash'],
                 'email' => ['required','email','max:50', Rule::unique('users','email')],
                 'password' => ['required','max:50','min:8']
             ]);
