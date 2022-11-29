@@ -7,12 +7,13 @@ use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-// use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use App\Services\Newsletter;
+use App\Models\Post;
+use App\Models\User;
 
 
 
@@ -35,6 +36,13 @@ Route::middleware('can:admin')->group(function(){
     Route::resource('admin/posts', AdminPostController::class)->except('show');
     Route::resource('admin/users', AdminUserController::class);
     Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy']);
+    Route::get('admin/api/posts', function(){
+        return Post::with('author')->get();
+    });
+
+    Route::get('admin/api/users', function(){
+        return User::all();
+    });
 });
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
