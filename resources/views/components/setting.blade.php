@@ -21,6 +21,13 @@
         </aside>
         @endadmin
         <main class="flex-1">
+            @admin
+            @if(request()->is('admin/posts'))
+                <button class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600 focus:bg-blue-600"><a href="/admin/api/posts">View in JSON</a></button>
+            @elseif(request()->is('admin/users'))
+                <button class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600 focus:bg-blue-600"><a href="/admin/api/users">View in JSON</a></button>
+            @endif
+            @endadmin
             <x-panel>
                 {{$slot}}
             </x-panel>
