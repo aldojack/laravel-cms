@@ -20,7 +20,7 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0 flex items-baseline space-x-2 self-start text-white">
+            <div class="bg-white flex items-baseline md:mt-0 mt-8 p-2 rounded-2xl self-start space-x-2 text-black">
                 @auth
                     <x-dropdown>
                         <x-slot name="trigger">
@@ -49,7 +49,7 @@
                     <a href="/login" class="text-xs font-bold uppercase">Login</a>
                 @endauth
 
-                        <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                        <a href="#newsletter" class="bg-blue-400 ml-3 rounded-full text-xs font-semibold text-black uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
