@@ -34,8 +34,10 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('can:admin')->group(function(){
     Route::resource('admin/posts', AdminPostController::class)->except('show');
-    Route::resource('admin/users', AdminUserController::class);
+    Route::resource('admin/users', AdminUserController::class)->except('create', 'store', 'show', 'edit', 'update');
     Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy']);
+
+    //API Routes
     Route::get('admin/api/posts', function(){
         return Post::with('author')->get();
     });
@@ -55,14 +57,7 @@ Route::get('email-verification/error', [RegisterController::class, 'getVerificat
 Route::get('email-verification/check/{token}', [RegisterController::class, 'getVerification'])->name('email-verification.check');
 
 Route::group(['middleware' => ['isVerified', 'auth']], function () {
-    
-    Route::get('dashboard/posts', [UserPostController::class, 'index']);
-    Route::post('dashboard/posts', [UserPostController::class, 'store']);
-    Route::get('dashboard/posts/create', [UserPostController::class, 'create']);
-    Route::get('dashboard/posts/{post}/edit', [UserPostController::class, 'edit']);
-    Route::patch('dashboard/posts/{post}', [UserPostController::class, 'update']);
-    Route::delete('dashboard/posts/{post}', [UserPostController::class, 'destroy']);
-
+    Route::resource('dashboard/posts', UserPostController::class)->except('show');
 });
 
 
