@@ -16,11 +16,11 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
-                    <img src="/images/SpeakUp-logos_white.png" alt="Speakup Logo" width="165" height="16">
+                    <img src="/images/SpeakUp-logos.jpeg" class="rounded-full" alt="Speakup Logo" width="165" height="16">
                 </a>
             </div>
 
-            <div class="bg-white flex items-baseline md:mt-0 mt-8 p-2 rounded-2xl self-start space-x-2 text-black">
+            <div class="bg-white flex items-baseline md:mt-0 mt-8 p-2 rounded-2xl self-start space-x-2 text-black flex-wrap">
                 @auth
                     <x-dropdown>
                         <x-slot name="trigger">
@@ -52,6 +52,11 @@
                         <a href="#newsletter" class="bg-blue-400 ml-3 rounded-full text-xs font-semibold text-black uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
+                @auth
+                @if(auth()->user()->verified === 0)
+                <div class="top-24 absolute basis full bg-white text-red-500 rounded p-2">Please verify email to start posting</div>
+                @endif
+                @endauth
             </div>
         </nav>
 
