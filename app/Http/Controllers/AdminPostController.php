@@ -56,6 +56,13 @@ class AdminPostController extends Controller
         return back()->with('success', 'Post Updated!');
     }
 
+    public function toggleStatus(Post $post)
+    {
+        // $post->update(['isLive' => $post.isLive ? 0 : 1]);
+        $post->update(['isLive' => POST::raw('NOT isLive')]);
+        return back()->with('success', 'Post staus updated!');
+    }
+
     public function destroy(Post $post)
     {
         $path = $post->thumbnail;

@@ -35,6 +35,7 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('can:admin')->group(function(){
     Route::resource('admin/posts', AdminPostController::class)->except('show');
+    Route::put('admin/posts/{post}',[AdminPostController::class, 'toggleStatus']);
     Route::resource('admin/users', AdminUserController::class)->except('create', 'store', 'show', 'edit', 'update');
     Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy']);
 

@@ -46,7 +46,12 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/admin/posts/{{ $post->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                        <form method="POST" action="/admin/posts/{{ $post->id }}">
+                                            @csrf
+                                            @method('PUT')
+
+                                            <button class="text-xs rounded p-2 {{$post->isLive ? 'text-black bg-white border-2 border-dotted border-red-400 ' : 'text-black bg-gray-200' }}">{{$post->isLive ? 'Live' : 'Pending' }}</button>
+                                        </form>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

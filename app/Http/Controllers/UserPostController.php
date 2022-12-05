@@ -14,7 +14,8 @@ class UserPostController extends Controller
     public function index()
     {
         return view('user.posts.index', [
-            'posts' => Post::where('user_id', auth()->id())->get()
+            'posts' => Post::where('user_id', auth()->id())
+            ->get()
         ]);
     }
     
