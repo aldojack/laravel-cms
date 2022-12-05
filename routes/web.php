@@ -28,6 +28,7 @@ Route::middleware('guest')->group(function(){
     Route::post('register',[RegisterController::class, 'register'])->middleware('guest');
     Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
     Route::post('sessions', [SessionsController::class, 'store'])->middleware('guest');
+    //Socialite route
     Route::get('login/{provider}',[LoginController::class,'redirectToProvider']);
     Route::get('login/{provider}/callback',[LoginController::class,'handleProviderCallback']);
 });
@@ -42,23 +43,30 @@ Route::middleware('can:admin')->group(function(){
         return Post::with('author')->get();
     });
 
+    Route::get('admin/api/posts/{post}', function(Post $post){
+        return Post::where('id',$post->id)->first();
+    });
+
     Route::get('admin/api/users', function(){
         return User::all();
     });
+
+    Route::get('admin/api/users/{user}', function(User $user){
+        return User::where('id',$user->id)->first();
+    });
+});
+
+Route::group(['middleware' => ['isVerified', 'auth']], function () {
+    Route::resource('dashboard/posts', UserPostController::class)->except('show');
 });
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
-
-
-
 
 Route::get('email-verification',[RegisterController::class, 'awaitingVerification'])->name('email-verification');
 Route::get('email-verification/error', [RegisterController::class, 'getVerificationError'])->name('email-verification.error');
 Route::get('email-verification/check/{token}', [RegisterController::class, 'getVerification'])->name('email-verification.check');
 
-Route::group(['middleware' => ['isVerified', 'auth']], function () {
-    Route::resource('dashboard/posts', UserPostController::class)->except('show');
-});
+
 
 
 
