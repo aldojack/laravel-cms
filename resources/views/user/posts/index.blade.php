@@ -7,6 +7,22 @@
                     @if($posts->count())
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                                <tr>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Title
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th colspan="2"
+                                        class="px-5 py-3 border-b-2 text-center border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($posts as $post)
                                 <tr>
@@ -18,6 +34,10 @@
                                                 </a>
                                             </div>
                                         </div>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <p class="text-xs rounded p-2 {{$post->isLive ? 'text-black bg-white border-2 border-dotted border-red-400 ' : 'text-black bg-gray-200' }}">{{$post->isLive ? 'Live' : 'Pending' }}</p>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
